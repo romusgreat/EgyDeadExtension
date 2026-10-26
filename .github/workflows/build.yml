@@ -4,54 +4,33 @@ on:
   push:
     branches:
       - main
-      - master
-    paths-ignore:
-      - 'README.md'
-      - '.gitignore'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set up Java JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
           distribution: 'temurin'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+          java-version: '17'
 
       - name: Grant Execute Permission to Gradlew
         run: chmod +x gradlew
 
       - name: Build CloudStream Plugin (.cs3) and Metadata
-        env:
-          GITHUB_REPOSITORY: ${{ github.repository }}
-        run: |
-          ./gradlew make makePluginsJson --no-daemon --stacktrace
+        run: ./gradlew make makePluginsJson
 
-      - name: Prepare Builds Branch Output
-        run: |
-          mkdir -p ../dist
-          cp -r EgyDeadProvider/build/*.cs3 ../dist/ || cp -r **/build/*.cs3 ../dist/
-          cp -r build/plugins.json ../dist/
-
-      - name: Deploy Compiled .cs3 Artifacts to 'builds' Branch
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to builds Branch
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: builds
-          publish_dir: ../dist
-          keep_files: false
-          force_orphan: true
+          branch: builds
+          folder: build
+          clean: true

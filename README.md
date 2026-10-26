@@ -17,7 +17,7 @@ Custom repository and provider extension for streaming Arabic and international 
    - **Repository Name**: `EgyDead Repo`
    - **Repository URL**:
      ```text
-     https://raw.githubusercontent.com/romus2250/EgyDeadExtension/main/repo.json
+     [https://raw.githubusercontent.com/romusgreat/EgyDeadExtension/main/repo.json](https://raw.githubusercontent.com/romusgreat/EgyDeadExtension/main/repo.json)
      ```
 4. Click **Download / Add**.
 5. Switch to the **Arabic** / **EgyDead** tab, tap **EgyDead**, and select **Install**.
@@ -32,6 +32,3 @@ Custom repository and provider extension for streaming Arabic and international 
 ```bash
 chmod +x gradlew
 ./gradlew make makePluginsJson
-```
-
-Compiled `.cs3` files will be placed inside `EgyDeadProvider/build/`.

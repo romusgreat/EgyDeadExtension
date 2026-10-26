@@ -35,11 +35,6 @@ subprojects {
     apply(plugin = "kotlin-android")
     apply(plugin = "com.lagradost.cloudstream3.gradle")
 
-    cloudstream {
-        setRepo(System.getenv("GITHUB_REPOSITORY") ?: "https://github.com/romusgreat/EgyDeadExtension")
-        authors = listOf("romusgreat")
-    }
-
     android {
         defaultConfig {
             minSdk = 21

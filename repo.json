@@ -1,0 +1,8 @@
+{
+  "name": "EgyDead Custom Repository",
+  "description": "Official CloudStream extension repository for EgyDead Arabic streaming media.",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/romus2250/EgyDeadExtension/builds/plugins.json"
+  ]
+}
